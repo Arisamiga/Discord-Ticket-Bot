@@ -1,0 +1,15 @@
+{
+  "name": "discord-ticket-bot",
+  "version": "1.0.0",
+  "description": "A simple Ticket Bot for discord coded in Discord.js",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "arisamiga",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  }
+}
