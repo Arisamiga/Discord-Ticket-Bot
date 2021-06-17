@@ -57,7 +57,7 @@ So when someone reacts to the message a channel will be created and the Answer E
 Supports Multiple Channels
 </li>
 <li>
-Custom Emded Tiles
+Custom Emded Titles
 </li>
 <li>
 Custom Embed Descriptions
