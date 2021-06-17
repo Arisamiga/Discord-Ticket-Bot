@@ -1,5 +1,5 @@
 # Discord-Ticket-Bot
-### A Simple useful giveaway bot for discord coded in Discord.js
+### A Simple useful ticket bot for discord coded in Discord.js
 
  <a href="https://github.com/Arisamiga/Discord-Ticket-Bot//issues">
    <img alt="Issues" src="https://img.shields.io/github/issues/Arisamiga/Discord-Ticket-Bot?color=0088ff" />
