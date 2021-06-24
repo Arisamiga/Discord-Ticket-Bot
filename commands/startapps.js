@@ -66,6 +66,7 @@ if (message.author.id !== Jsonfile.owner) return message.channel.send("Sorry but
         switch (reaction.emoji.name) {
             case "🔒":
             channel.updateOverwrite(user.id, { "SEND_MESSAGES": false });
+            channel.send("Channel has been locked!");
             break;
             case "⛔":
             if (message.guild.channels.cache.find(c => c.name.toLowerCase() === channel.name)) { //checks if there in an item in the channels collection that corresponds with the supplied parameters, returns a boolean
