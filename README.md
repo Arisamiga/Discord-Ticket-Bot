@@ -4,6 +4,7 @@
 And it includes some more features in the bot:
 
 + Added ability to specify a role that can view the ticket channels.
++ Remove reaction on started embed after channel is created 
 
 ### A Simple useful ticket bot for discord coded in Discord.js
 
