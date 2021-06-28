@@ -25,6 +25,7 @@ if (message.author.id !== Jsonfile.owner) return message.channel.send("Sorry but
         switch (reaction.emoji.name) {
             case "📩":
                 contining(user)
+                reaction.users.remove(user.id)
             break;
         }
     })
