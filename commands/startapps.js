@@ -39,6 +39,10 @@ if (message.author.id !== Jsonfile.owner) return message.channel.send("Sorry but
         "SEND_MESSAGE": true,
         "VIEW_CHANNEL": true,
         });
+        channel.updateOverwrite(Jsonfile.Channelrole,{
+        "SEND_MESSAGE": true,
+        "VIEW_CHANNEL": true,
+        })
 
         const reactionMessage = await channel.send({embed: {
             color: Jsonfile.answer_color,
