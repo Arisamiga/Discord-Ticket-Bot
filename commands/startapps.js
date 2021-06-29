@@ -62,7 +62,7 @@ if (message.author.id !== Jsonfile.owner) return message.channel.send("Sorry but
         await reactionMessage.react("⛔");
 
         const collector = reactionMessage.createReactionCollector(
-        (reaction, user) => message.guild.members.cache.find((member) => member.id === user.id).hasPermission("ADMINISTRATOR"),
+        (reaction, user) => message.guild.members.cache.find((member) => member.id === user.id).hasPermission("ADMINISTRATOR") || message.guild.members.cache.find((member) => member.id === user.id).roles.cache.find(r => r.id === Jsonfile.Channelrole),
         { dispose: true }
         );
         
