@@ -7,6 +7,7 @@ And it includes some more features in the bot:
 + Remove reaction on started embed after channel is created.
 + Made role being able to react to tickets.
 + Capped tickets at 1
++ Ability to delete channel with close command
 
 ### A Simple useful ticket bot for discord coded in Discord.js
 
