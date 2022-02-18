@@ -1,20 +1,20 @@
 const Jsonfile = require('../config.json');
-exports.run = async (client, message, args) => {
+exports.run = async (client, message) => {
   if (message.author.id !== Jsonfile.owner) return message.channel.send("Sorry but you cant use this command D:").then((msg) => {
     setTimeout(() => msg.delete(), 7000);
   })
-  const signup = await message.channel.send({
-    embed: {
-      color: Jsonfile.signup_color,
-      fields: [{
-        name: Jsonfile.signup_title,
-        value: "To create a ticket react with  📩"
-      }],
-      timestamp: new Date(),
-      footer: {
-        icon_url: client.user.avatarURL()
-      }
+  const signupEmbed = {
+    color: Jsonfile.signup_color,
+    fields: [{
+      name: Jsonfile.signup_title,
+      value: "To create a ticket react with  📩"
+    }],
+    footer: {
+      icon_url: client.user.avatarURL()
     }
+  }
+  const signup = await message.channel.send({
+    embeds: [signupEmbed]
   });
   await signup.react("📩")
   const collector = signup.createReactionCollector(
@@ -23,16 +23,18 @@ exports.run = async (client, message, args) => {
     }
   );
   collector.on("collect", (reaction, user) => {
+    if (user.bot) return;
     switch (reaction.emoji.name) {
       case "📩":
         let channelname = `ticket-${user.username}-${user.discriminator}`
         channelname = channelname.replace(/\s/g, '-').toLowerCase()
-        if (message.guild.channels.cache.find(channel => channel.name === channelname)) { //checks if there in an item in the channels collection that corresponds with the supplied parameters, returns a boolean
+        if (message.guild.channels.cache.find(channel => channel.name === channelname) && Jsonfile.one_app) {
           user.send(`You already have an ongoing ticket.`).catch(console.error);
           reaction.users.remove(user.id)
-          return; //prevents the rest of the code from being executed
+          return;
         } else {
           contining(user)
+          reaction.users.remove(user.id)
         }
         break;
     }
@@ -40,56 +42,70 @@ exports.run = async (client, message, args) => {
   async function contining(user) {
     const channel = await message.guild.channels.create(`ticket: ${user.username + "-" + user.discriminator}`);
 
-    channel.updateOverwrite(message.guild.id, {
-      "SEND_MESSAGE": false,
+    channel.permissionOverwrites.edit(message.guild.id, {
+      "SEND_MESSAGES": false,
       "VIEW_CHANNEL": false,
     });
-    channel.updateOverwrite(user.id, {
-      "SEND_MESSAGE": true,
+    channel.permissionOverwrites.edit(user.id, {
+      "SEND_MESSAGES": true,
       "VIEW_CHANNEL": true,
     });
-    channel.updateOverwrite(Jsonfile.Channelrole, {
-      "SEND_MESSAGE": true,
+    channel.permissionOverwrites.edit(Jsonfile.Channelrole, {
+      "SEND_MESSAGES": true,
       "VIEW_CHANNEL": true,
     })
 
-    const reactionMessage = await channel.send({
-      embed: {
-        color: Jsonfile.answer_color,
-        fields: [{
-          name: Jsonfile.answer_title,
-          value: Jsonfile.answer_description
-        }],
-        timestamp: new Date(),
-        footer: {
-          icon_url: client.user.avatarURL()
-        }
+    const reactionMessageEmbed = {
+      color: Jsonfile.answer_color,
+      fields: [{
+        name: Jsonfile.answer_title,
+        value: Jsonfile.answer_description
+      }],
+      footer: {
+        icon_url: client.user.avatarURL()
       }
+    }
+    const reactionMessage = await channel.send({
+      embeds: [reactionMessageEmbed]
     })
     await reactionMessage.react("🔒");
     await reactionMessage.react("⛔");
 
     const collector = reactionMessage.createReactionCollector(
-      (reaction, user) => message.guild.members.cache.find((member) => member.id === user.id).hasPermission("ADMINISTRATOR") || message.guild.members.cache.find((member) => member.id === user.id).roles.cache.find(r => r.id === Jsonfile.Channelrole), {
+      (reaction, user) => message.guild.members.cache.find((member) => member.id === user.id).permissions.has("ADMINISTRATOR") || message.guild.members.cache.find((member) => member.id === user.id).roles.cache.find(r => r.id === Jsonfile.Channelrole), {
         dispose: true
       }
     );
 
 
     collector.on("collect", (reaction, user) => {
+      if (user.bot) return;
       switch (reaction.emoji.name) {
         case "🔒":
-          channel.updateOverwrite(user.id, {
-            "SEND_MESSAGES": false
-          });
-          break;
-        case "⛔":
-          if (message.guild.channels.cache.find(c => c.name.toLowerCase() === channel.name)) { //checks if there in an item in the channels collection that corresponds with the supplied parameters, returns a boolean
-            setTimeout(() => channel.delete(), 5000);
-            channel.send("Deleting this channel in 5 seconds!");
-            return;
+          if (message.guild.members.cache.find((member) => member.id === user.id).permissions.has("ADMINISTRATOR") || message.guild.members.cache.find((member) => member.id === user.id).roles.cache.find(r => r.id === Jsonfile.Channelrole)) {
+            channel.permissionOverwrites.edit(user.id, {
+              "SEND_MESSAGES": false
+            });
+            channel.send("Channel Locked 🔒");
+            break;
+          } else {
+            user.send("Only Staff can lock the channels")
+            reaction.users.remove(user.id)
+            break
           }
-          break;
+          case "⛔":
+            if (message.guild.channels.cache.find(c => c.name.toLowerCase() === channel.name)) {
+              if (message.guild.members.cache.find((member) => member.id === user.id).permissions.has("ADMINISTRATOR") || message.guild.members.cache.find((member) => member.id === user.id).roles.cache.find(r => r.id === Jsonfile.Channelrole)) {
+                setTimeout(() => channel.delete(), 5000);
+                channel.send("Deleting this channel in 5 seconds!");
+                return;
+              } else {
+                user.send("Only Staff can delete the channels")
+                reaction.users.remove(user.id)
+                break
+              }
+            }
+            break;
       }
     });
   }

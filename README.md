@@ -1,14 +1,5 @@
 # Discord-Ticket-Bot RoleViewer Version
 
-#### **What is diffrent about this branch?** This branch was created upon a request from @JasperzDev. 
-And it includes some more features in the bot:
-
-+ Added ability to specify a role that can view the ticket channels.
-+ Remove reaction on started embed after channel is created.
-+ Made role being able to react to tickets.
-+ Capped tickets at 1
-+ Ability to delete channel with close command
-
 ### A Simple useful ticket bot for discord coded in Discord.js
 
  <a href="https://github.com/Arisamiga/Discord-Ticket-Bot//issues">
@@ -42,7 +33,8 @@ Change the following
     "signup_title": "(Enter Title for signup Embed Here)",
     "answer_title": "(Enter Title for Answer Embed Here)",
     "answer_color": "(Enter Hex Code for Answer Embed Here)",
-    "answer_description": "(Enter Answer Embed Description) (Use \n for breaking lines!)"
+    "answer_description": "(Enter Answer Embed Description) (Use \n for breaking lines!)",
+    "one_app": true (Pick either True = To allow only 1 ticket to exist at a time / False = To allow multiple ticket to exist at a time)
 }
 
 ```

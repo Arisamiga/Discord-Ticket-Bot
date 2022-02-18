@@ -7,5 +7,6 @@
     "signup_title": "(Enter Title for signup Embed Here)",
     "answer_title": "(Enter Title for Answer Embed Here)",
     "answer_color": "(Enter Hex Code for Answer Embed Here)",
-    "answer_description": "(Enter Answer Embed Description) (Use \n for breaking lines!)"
+    "answer_description": "(Enter Answer Embed Description) (Use \n for breaking lines!)",
+    "one_app": true 
 }
