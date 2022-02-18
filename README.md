@@ -1,5 +1,4 @@
 # Discord-Ticket-Bot RoleViewer Version
-
 ### A Simple useful ticket bot for discord coded in Discord.js
 
  <a href="https://github.com/Arisamiga/Discord-Ticket-Bot//issues">
@@ -8,7 +7,7 @@
   
 [![CodeFactor](https://www.codefactor.io/repository/github/arisamiga/discord-ticket-bot/badge?s=ce8618765d3ec8b05264bac256588a4411f7712b)](https://www.codefactor.io/repository/github/arisamiga/discord-ticket-bot) 
 
-<img src= "https://i.imgur.com/bQhJm9q.jpg"> <img src="https://i.imgur.com/Zp2ke2P.jpg">
+<img src= "https://i.imgur.com/XQi0yrC.jpg"> <img src="https://i.imgur.com/XBZZTA3.jpg">
 
 ## Installation
 ```
