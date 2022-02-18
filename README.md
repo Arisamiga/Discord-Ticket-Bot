@@ -1,4 +1,5 @@
-# Discord-Ticket-Bot RoleViewer Version
+# Discord-Ticket-Bot
+
 ### A Simple useful ticket bot for discord coded in Discord.js
 
  <a href="https://github.com/Arisamiga/Discord-Ticket-Bot//issues">

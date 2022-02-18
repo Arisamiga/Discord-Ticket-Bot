@@ -77,7 +77,6 @@ exports.run = async (client, message) => {
       }
     );
 
-
     collector.on("collect", (reaction, user) => {
       if (user.bot) return;
       switch (reaction.emoji.name) {
