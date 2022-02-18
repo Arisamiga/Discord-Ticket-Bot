@@ -1,4 +1,5 @@
 # Discord-Ticket-Bot
+
 ### A Simple useful ticket bot for discord coded in Discord.js
 
  <a href="https://github.com/Arisamiga/Discord-Ticket-Bot//issues">
@@ -7,7 +8,7 @@
   
 [![CodeFactor](https://www.codefactor.io/repository/github/arisamiga/discord-ticket-bot/badge?s=ce8618765d3ec8b05264bac256588a4411f7712b)](https://www.codefactor.io/repository/github/arisamiga/discord-ticket-bot) 
 
-<img src= "https://i.imgur.com/bQhJm9q.jpg"> <img src="https://i.imgur.com/Zp2ke2P.jpg">
+<img src= "https://i.imgur.com/XQi0yrC.jpg"> <img src="https://i.imgur.com/XBZZTA3.jpg">
 
 ## Installation
 ```
@@ -27,11 +28,13 @@ Change the following
     "token": "(Enter Token here)",
     "prefix": "(Enter Prefix Here)",
     "owner": "(Enter id of Bot Owner)",
+    "Channelrole":"(Enter id of Viewing Role)",
     "signup_color": "(Enter Hex Code for signup Embed Here)",
     "signup_title": "(Enter Title for signup Embed Here)",
     "answer_title": "(Enter Title for Answer Embed Here)",
     "answer_color": "(Enter Hex Code for Answer Embed Here)",
-    "answer_description": "(Enter Answer Embed Description) (Use \n for breaking lines!)"
+    "answer_description": "(Enter Answer Embed Description) (Use \n for breaking lines!)",
+    "one_app": true (Pick either True = To allow only 1 ticket to exist at a time / False = To allow multiple ticket to exist at a time)
 }
 
 ```

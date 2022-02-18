@@ -1,5 +1,5 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const {Collection, Intents, Client} = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 const fs = require('fs');
 const token = require('./config.json');
 
@@ -18,7 +18,7 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
-client.commands = new Discord.Collection();
+client.commands = new Collection();
 
 fs.readdir("./commands/", (err, files) => {
     if (err) return console.error(err);
