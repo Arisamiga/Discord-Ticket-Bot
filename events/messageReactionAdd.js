@@ -31,7 +31,7 @@ module.exports = (client, messageReaction, user) => {
     if (collectors.collector.filter(e => e.id === messageReaction.message.id).length > 0) {
         if (user.bot) return;
         switch (messageReaction.emoji.name) {
-            case "📩":
+            case "📩":{
                 let channelname = `ticket-${user.username}`
                 channelname = channelname.replace(/\s/g, '-').toLowerCase()
                 if (messageReaction.message.guild.channels.cache.find(channel => channel.name === channelname) && config.one_app) {
@@ -42,7 +42,7 @@ module.exports = (client, messageReaction, user) => {
                     contining(client, messageReaction.message, user)
                     messageReaction.users.remove(user.id)
                 }
-                
+              }
             }
         }
     if (collectors.tickets.filter(e => e.id === messageReaction.message.id).length > 0) {
