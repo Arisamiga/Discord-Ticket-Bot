@@ -34,6 +34,9 @@ Change the following
     "answer_title": "(Enter Title for Answer Embed Here)",
     "answer_color": "(Enter Hex Code for Answer Embed Here)",
     "answer_description": "(Enter Answer Embed Description) (Use \n for breaking lines!)",
+    "answer_category": "(Enter id of Category for Tickets)",
+    "allow_user_delete": false, (Allow users to delete their own tickets)
+    "allow_user_lock": false, (Allow users to lock their own tickets)
     "one_app": true (Pick either True = To allow only 1 ticket to exist at a time / False = To allow multiple ticket to exist at a time)
 }
 

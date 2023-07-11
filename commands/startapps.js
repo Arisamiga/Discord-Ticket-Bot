@@ -26,7 +26,7 @@ exports.run = async (client, message) => {
     if (user.bot) return;
     switch (reaction.emoji.name) {
       case "📩":
-        let channelname = `ticket-${user.username}-${user.discriminator}`
+        let channelname = `ticket-${user.username}`
         channelname = channelname.replace(/\s/g, '-').toLowerCase()
         if (message.guild.channels.cache.find(channel => channel.name === channelname) && Jsonfile.one_app) {
           user.send(`You already have an ongoing ticket.`).catch(console.error);
@@ -40,7 +40,15 @@ exports.run = async (client, message) => {
     }
   })
   async function contining(user) {
-    const channel = await message.guild.channels.create(`ticket: ${user.username + "-" + user.discriminator}`);
+    let channel;
+    if(!isNaN(Jsonfile.answer_category)) {
+      channel = await message.guild.channels.create(`ticket: ${user.username}`, {
+      parent: Jsonfile.answer_category,
+    });
+    } 
+    else{
+      channel = await message.guild.channels.create(`ticket: ${user.username}`);
+    }
 
     channel.permissionOverwrites.edit(message.guild.id, {
       "SEND_MESSAGES": false,
@@ -81,7 +89,7 @@ exports.run = async (client, message) => {
       if (user.bot) return;
       switch (reaction.emoji.name) {
         case "🔒":
-          if (message.guild.members.cache.find((member) => member.id === user.id).permissions.has("ADMINISTRATOR") || message.guild.members.cache.find((member) => member.id === user.id).roles.cache.find(r => r.id === Jsonfile.Channelrole)) {
+          if (message.guild.members.cache.find((member) => member.id === user.id).permissions.has("ADMINISTRATOR") || message.guild.members.cache.find((member) => member.id === user.id).roles.cache.find(r => r.id === Jsonfile.Channelrole) || Jsonfile.allow_user_lock) {
             channel.permissionOverwrites.edit(user.id, {
               "SEND_MESSAGES": false
             });
@@ -94,8 +102,12 @@ exports.run = async (client, message) => {
           }
           case "⛔":
             if (message.guild.channels.cache.find(c => c.name.toLowerCase() === channel.name)) {
-              if (message.guild.members.cache.find((member) => member.id === user.id).permissions.has("ADMINISTRATOR") || message.guild.members.cache.find((member) => member.id === user.id).roles.cache.find(r => r.id === Jsonfile.Channelrole)) {
-                setTimeout(() => channel.delete(), 5000);
+              if (message.guild.members.cache.find((member) => member.id === user.id).permissions.has("ADMINISTRATOR") || message.guild.members.cache.find((member) => member.id === user.id).roles.cache.find(r => r.id === Jsonfile.Channelrole) || Jsonfile.allow_user_delete) {
+                setTimeout(() => {
+                  if (message.guild.channels.cache.find(c => c.name.toLowerCase() === channel.name)) {
+                    channel.delete();
+                  }
+                }, 5000);
                 channel.send("Deleting this channel in 5 seconds!");
                 return;
               } else {
