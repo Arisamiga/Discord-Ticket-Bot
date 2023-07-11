@@ -28,7 +28,7 @@ Change the following
     "token": "(Enter Token here)",
     "prefix": "(Enter Prefix Here)",
     "owner": "(Enter id of Bot Owner)",
-    "Channelrole":"(Enter id of Viewing Role)",
+    "Channelrole": ["(Enter id of Viewing Role)","(You can add more if you want)"],
     "signup_color": "(Enter Hex Code for signup Embed Here)",
     "signup_title": "(Enter Title for signup Embed Here)",
     "answer_title": "(Enter Title for Answer Embed Here)",
@@ -70,6 +70,9 @@ Custom Embed Descriptions
 </li>
 <li>
 Custom Embed Color Option
+</li>
+<li>
+Able to be rebooted without any loss.
 </li>
 <li>
 Easy to use!
