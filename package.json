@@ -4,12 +4,16 @@
   "description": "A simple Ticket Bot for discord coded in Discord.js",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "arisamiga",
   "license": "Apache-2.0",
   "dependencies": {
     "discord.js": "^13.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0"
   }
 }
