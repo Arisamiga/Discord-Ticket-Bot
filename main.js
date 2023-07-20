@@ -38,25 +38,17 @@ client.on('ready', async () => {
 
       for (let i = 0; i < obj.collector.length; i++) {
         checkMessage(obj.collector[i].id, obj.collector[i].channelId).then((result) => {
-          if (!result) {
-            // Reread collectors.json and remove the invalid messageid
-            collectorToDeleteid.push(obj.collector[i].id);
-          }
+          // Reread collectors.json and remove the invalid messageid
+          if (!result) collectorToDeleteid.push(obj.collector[i].id);
         });
-        if (i == obj.collector.length - 1) {
-          collectorCheck = true;
-        }
+        if (i == obj.collector.length - 1) collectorCheck = true;
       }
       for (let i = 0; i < obj.tickets.length; i++) {
         checkMessage(obj.tickets[i].id, obj.tickets[i].channelId).then((result) => {
-          if (!result) {
-            // Reread collectors.json and remove the invalid messageid
-            ticketToDeleteid.push(obj.tickets[i].id);
-          }
+          // Reread collectors.json and remove the invalid messageid
+          if (!result) ticketToDeleteid.push(obj.tickets[i].id);
         });
-        if (i == obj.tickets.length - 1) {
-          ticketCheck = true;
-        }
+        if (i == obj.tickets.length - 1) ticketCheck = true;
       }
 
       // Wait for the promises to finish
@@ -80,7 +72,7 @@ client.on('ready', async () => {
           }
           // Write the new collectors.json
           const json = JSON.stringify(obj);
-          fs.writeFile('./collectors.json', json, 'utf8', function (err) {
+          fs.writeFile('./collectors.json', json, 'utf8', (err) => {
             if (err) throw err;
             console.log('collectors.json Updated');
           });
@@ -117,6 +109,6 @@ client.login(token.token);
 
 const checkMessage = async (id, channelid) => {
   const channel = await client.channels.fetch(channelid);
-  const channelMessages = await channel?.messages.fetch(id);
-  channelMessages ? true : false;
+  const channelMessage = await channel?.messages.fetch(id);
+  return channelMessage;
 };
