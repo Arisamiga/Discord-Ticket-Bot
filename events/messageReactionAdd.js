@@ -12,7 +12,7 @@ module.exports = (client, messageReaction, user) => {
     if (messageReaction.emoji.name === '📩') {
       let channelname = `ticket-${user.username}`;
       channelname = channelname.replace(/\s/g, '-').toLowerCase();
-      if (!messageReaction.message.guild.channels.cache.find((channel) => channel.name === channelname) || !config.one_app) {
+      if (messageReaction.message.guild.channels.cache.find((channel) => channel.name === channelname) && config.one_app) {
         user.send(`You already have an ongoing ticket.`).catch(console.error);
         return messageReaction.users.remove(user.id);
       }
