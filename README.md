@@ -17,8 +17,9 @@ Create a folder.
 Open Command Promt.
 Type in: cd The path to your new folder. (Example: C:\Users\User\Desktop\New folder)
 Press enter.
-After that type in: git clone https://github.com/Arisamiga/Discord-Ticket-Bot.git
+After that type in: git clone https://github.com/Arisamiga/Discord-Ticket-Bot.git .
 Press enter.
+After that, you'll have to install external modules, just type: npm i
 When you see all Github files in your folder you installed the bot files succesfully.
 After that you would want to edit the config.json.
 ```
