@@ -39,14 +39,20 @@ client.on('ready', async () => {
       for (let i = 0; i < obj.collector.length; i++) {
         checkMessage(obj.collector[i].id, obj.collector[i].channelId).then((result) => {
           // Reread collectors.json and remove the invalid messageid
-          if (!result) collectorToDeleteid.push(obj.collector[i].id);
+          if (!result) {
+            console.log(`Cleaning up inactive collector: messageid: ${obj.collector[i].id} in channelid: ${obj.collector[i].channelId}`);
+            collectorToDeleteid.push(obj.collector[i].id);
+          }
         });
         if (i == obj.collector.length - 1) collectorCheck = true;
       }
       for (let i = 0; i < obj.tickets.length; i++) {
         checkMessage(obj.tickets[i].id, obj.tickets[i].channelId).then((result) => {
           // Reread collectors.json and remove the invalid messageid
-          if (!result) ticketToDeleteid.push(obj.tickets[i].id);
+          if (!result) {
+            console.log(`Cleaning up inactive ticket: messageid: ${obj.collector[i].id} in channelid: ${obj.collector[i].channelId}`);
+            ticketToDeleteid.push(obj.tickets[i].id);
+          }
         });
         if (i == obj.tickets.length - 1) ticketCheck = true;
       }
@@ -108,7 +114,8 @@ fs.readdir('./commands/', (err, files) => {
 client.login(token.token);
 
 const checkMessage = async (id, channelid) => {
-  const channel = await client.channels.fetch(channelid);
+  const channel = await client.channels.cache.get(channelid);
+  if (!channel) return;
   const channelMessage = await channel?.messages.fetch(id);
   return channelMessage;
 };
