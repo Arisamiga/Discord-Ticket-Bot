@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "lint": "eslint ."
+    "start:dev": "nodemon main.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "arisamiga",
@@ -14,6 +16,9 @@
     "discord.js": "^13.6.0"
   },
   "devDependencies": {
-    "eslint": "^8.45.0"
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.0"
   }
 }
