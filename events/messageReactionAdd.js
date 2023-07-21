@@ -26,7 +26,7 @@ module.exports = (client, messageReaction, user) => {
     let channel = messageReaction.message.guild.channels.cache.find((channel) => channel.id === messageReaction.message.channel.id);
     switch (messageReaction.emoji.name) {
       case '🔒':
-        if (!checkUser(messageReaction.message, user) || !config.allow_user_lock) {
+        if (!checkUser(messageReaction.message, user) && !config.allow_user_lock) {
           user.send('Only Staff can lock the channels');
           return messageReaction.users.remove(user.id);
         }
@@ -36,7 +36,7 @@ module.exports = (client, messageReaction, user) => {
         return messageReaction.message.channel.send('Channel Locked 🔒');
       case '⛔':
         if (!messageReaction.message.guild.channels.cache.find((c) => c.name.toLowerCase() === channel.name)) return;
-        if (!checkUser(messageReaction.message, user) || !config.allow_user_delete) {
+        if (!checkUser(messageReaction.message, user) && !config.allow_user_delete) {
           user.send('Only Staff can delete the channels').catch(console.error);
           return messageReaction.users.remove(user.id);
         }
