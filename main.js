@@ -116,6 +116,6 @@ client.login(token.token);
 const checkMessage = async (id, channelid) => {
   const channel = await client.channels.cache.get(channelid);
   if (!channel) return;
-  const channelMessage = await channel?.messages.fetch(id);
+  const channelMessage = await channel?.messages.fetch(id).catch((err) => console.error(`Error ${err.httpStatus}: ${err.message}`));
   return channelMessage;
 };
