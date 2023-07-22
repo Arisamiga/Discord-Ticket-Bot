@@ -4,12 +4,26 @@
   "description": "A simple Ticket Bot for discord coded in Discord.js",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
+    "dev": "nodemon main.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "*.json"
+    ]
   },
   "keywords": [],
   "author": "arisamiga",
   "license": "Apache-2.0",
   "dependencies": {
     "discord.js": "^13.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.0"
   }
 }
