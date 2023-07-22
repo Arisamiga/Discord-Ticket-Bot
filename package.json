@@ -5,9 +5,15 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "start:dev": "nodemon main.js",
+    "dev": "nodemon main.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "*.json"
+    ],
+    "delay": 2500
   },
   "keywords": [],
   "author": "arisamiga",
