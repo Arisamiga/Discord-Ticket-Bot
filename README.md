@@ -52,6 +52,10 @@ And you should be ready to start the bot!
 
 Use either use `npm start` or `node main.js` to start the bot in your command prompt!
 
+## Nodemon Usage
+
+If you wish to use nodemon instead of node, you can use `npm run dev` to start the bot with nodemon!
+
 ## Setting the Reaction Embed!
 
 To start the Reaction Embed you should have the bot enabled.
@@ -81,6 +85,9 @@ Custom Embed Color Option
 </li>
 <li>
 Able to be rebooted without any loss.
+</li>
+<li>
+Nodemon preinstalled for auto rebooting.
 </li>
 <li>
 Easy to use!
