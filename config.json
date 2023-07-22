@@ -1,15 +1,15 @@
 {
-    "token": "(Enter Token here)",
-    "prefix": "(Enter Prefix Here)",
-    "owner": "(Enter id of Bot Owner)",
-    "Channelrole": ["(Enter id of Viewing Role)","(You can add more if you want)"],
-    "signup_color": "(Enter Hex Code for signup Embed Here)",
-    "signup_title": "(Enter Title for signup Embed Here)",
-    "answer_title": "(Enter Title for Answer Embed Here)",
-    "answer_color": "(Enter Hex Code for Answer Embed Here)",
-    "answer_description": "(Enter Answer Embed Description) (Use \n for breaking lines!)",
-    "answer_category": "(Enter id of Category for Tickets)",
-    "allow_user_delete": false,
-    "allow_user_lock": false,
-    "one_app": true 
+  "token": "(Enter Token here)",
+  "prefix": "(Enter Prefix Here)",
+  "owner": "(Enter id of Bot Owner)",
+  "Channelrole": ["(Enter id of Viewing Role)", "(You can add more if you want)"],
+  "signup_color": "(Enter Hex Code for signup Embed Here)",
+  "signup_title": "(Enter Title for signup Embed Here)",
+  "answer_title": "(Enter Title for Answer Embed Here)",
+  "answer_color": "(Enter Hex Code for Answer Embed Here)",
+  "answer_description": "(Enter Answer Embed Description) (Use \n for breaking lines!)",
+  "answer_category": "(Enter id of Category for Tickets)",
+  "allow_user_delete": false,
+  "allow_user_lock": false,
+  "one_app": true
 }
