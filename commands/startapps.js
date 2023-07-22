@@ -88,6 +88,5 @@ const contining = async (client, message, user) => {
 
   addToTickets(reactionMessage.id, channel.id);
 };
-module.exports.contining = contining;
 
-// "Contining"? Misspelled?
+module.exports.contining = contining;
