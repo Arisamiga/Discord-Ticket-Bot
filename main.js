@@ -50,7 +50,7 @@ client.on('ready', async () => {
         checkMessage(obj.tickets[i].id, obj.tickets[i].channelId).then((result) => {
           // Reread collectors.json and remove the invalid messageid
           if (!result) {
-            console.log(`Cleaning up inactive ticket: messageid: ${obj.collector[i].id} in channelid: ${obj.collector[i].channelId}`);
+            console.log(`Cleaning up inactive ticket: messageid: ${obj.tickets[i].id} in channelid: ${obj.tickets[i].channelId}`);
             ticketToDeleteid.push(obj.tickets[i].id);
           }
         });
