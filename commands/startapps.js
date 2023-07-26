@@ -41,7 +41,7 @@ const contining = async (client, message, user) => {
     fs.readFile('./collectors.json', 'utf8', function readFileCallback(err, data) {
       if (err) console.error(err);
       const obj = JSON.parse(data);
-      obj.tickets.push({ id: messageID, channelId: channelID });
+      obj.tickets.push({ id: messageID, channelId: channelID, owner: user.id });
       const json = JSON.stringify(obj);
       fs.writeFile('./collectors.json', json, 'utf8', (err) => {
         if (err) throw err;
@@ -84,6 +84,7 @@ const contining = async (client, message, user) => {
     embeds: [reactionMessageEmbed],
   });
   await reactionMessage.react('🔒');
+  await reactionMessage.react('🔓');
   await reactionMessage.react('⛔');
 
   addToTickets(reactionMessage.id, channel.id);

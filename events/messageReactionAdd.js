@@ -24,30 +24,51 @@ module.exports = (client, messageReaction, user) => {
   // Handle tickets
   if (collectors.tickets.filter((e) => e.id === messageReaction.message.id).length > 0) {
     let channel = messageReaction.message.guild.channels.cache.find((channel) => channel.id === messageReaction.message.channel.id);
-    switch (messageReaction.emoji.name) {
-      case '🔒':
-        if (!checkUser(messageReaction.message, user) && !config.allow_user_lock) {
-          user.send('Only Staff can lock the channels');
-          return messageReaction.users.remove(user.id);
-        }
-        channel.permissionOverwrites.edit(user.id, {
-          SEND_MESSAGES: false,
-        });
-        return messageReaction.message.channel.send('Channel Locked 🔒');
-      case '⛔':
-        if (!messageReaction.message.guild.channels.cache.find((c) => c.name.toLowerCase() === channel.name)) return;
-        if (!checkUser(messageReaction.message, user) && !config.allow_user_delete) {
-          user.send('Only Staff can delete the channels').catch(console.error);
-          return messageReaction.users.remove(user.id);
-        }
+    const ownerID = collectors.tickets.filter((e) => e.id === messageReaction.message.id)[0].owner;
+    // Get owner of the ticket
+    client.users.fetch(ownerID).then((owner) => {
+      switch (messageReaction.emoji.name) {
+        case '🔒':
+          if (!checkUser(messageReaction.message, user) && !config.allow_user_lock) {
+            user.send('Only Staff can lock the channels');
+            return messageReaction.users.remove(user.id);
+          }
+          if (channel.permissionOverwrites.cache.get(ownerID)?.deny.has('SEND_MESSAGES')) {
+            user.send('This channel is already locked');
+            return messageReaction.users.remove(user.id);
+          }
+          channel.permissionOverwrites.edit(owner, {
+            SEND_MESSAGES: false,
+          });
+          return messageReaction.message.channel.send('Channel Locked 🔒');
+        case '🔓':
+          if (!checkUser(messageReaction.message, user) && !config.allow_user_unlock) {
+            user.send('Only Staff can unlock the channels');
+            return messageReaction.users.remove(user.id);
+          }
+          if (channel.permissionOverwrites.cache.get(ownerID)?.allow.has('SEND_MESSAGES')) {
+            user.send('This channel is already unlocked');
+            return messageReaction.users.remove(user.id);
+          }
+          channel.permissionOverwrites.edit(owner, {
+            SEND_MESSAGES: true,
+          });
+          return messageReaction.message.channel.send('Channel Unlocked 🔓');
+        case '⛔':
+          if (!messageReaction.message.guild.channels.cache.find((c) => c.name.toLowerCase() === channel.name)) return;
+          if (!checkUser(messageReaction.message, user) && !config.allow_user_delete) {
+            user.send('Only Staff can delete the channels').catch(console.error);
+            return messageReaction.users.remove(user.id);
+          }
 
-        setTimeout(() => {
-          if (messageReaction.message.guild.channels.cache.find((c) => c.name.toLowerCase() === channel.name)) channel.delete();
-          removeTicketfromCollectors(messageReaction.message.id);
-        }, 5000);
+          setTimeout(() => {
+            if (messageReaction.message.guild.channels.cache.find((c) => c.name.toLowerCase() === channel.name)) channel.delete();
+            removeTicketfromCollectors(messageReaction.message.id);
+          }, 5000);
 
-        return messageReaction.message.channel.send('Deleting this channel in 5 seconds!');
-    }
+          return messageReaction.message.channel.send('Deleting this channel in 5 seconds!');
+      }
+    });
   }
 };
 

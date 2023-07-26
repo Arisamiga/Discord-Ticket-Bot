@@ -11,5 +11,6 @@
   "answer_category": "(Enter id of Category for Tickets)",
   "allow_user_delete": false,
   "allow_user_lock": false,
+  "allow_user_unlock": false,
   "one_app": true
 }
