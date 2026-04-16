@@ -1,7 +1,7 @@
 {
-  "token": "(Enter Token here)",
-  "prefix": "(Enter Prefix Here)",
-  "owner": "(Enter id of Bot Owner)",
+  "token": "MTQ5NDMxMjU4NDg5ODE1NDU0Nw.GSfbHF.hl5B_NUwV4rUH51TX0Ivr6d9sZRiDRfAQVxKyI",
+  "prefix": "&",
+  "owner": "1269499188727513230",
   "Channelrole": ["(Enter id of Viewing Role)", "(You can add more if you want)"],
   "signup_color": "(Enter Hex Code for signup Embed Here)",
   "signup_title": "(Enter Title for signup Embed Here)",
